@@ -11,6 +11,7 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
 import java.time.LocalTime;
+import java.util.Random;
 
 public class database extends Application {
 
@@ -19,7 +20,8 @@ public class database extends Application {
     }
 
     public class basic_data{
-        public List<LocalTime> newVacancies = new ArrayList<>();
+        public LocalTime start, end;
+        public int queueMin, queueMax;
     }
 
     public class user_data{
@@ -35,36 +37,40 @@ public class database extends Application {
         ////////////////////////////////////////////////////////////////////////////////////////////////
         // Outback Data:
         basic_data outback_data = new basic_data();
-        outback_data.newVacancies.add(LocalTime.parse("11:00:00"));
-        outback_data.newVacancies.add(LocalTime.parse("12:00:00"));
-        outback_data.newVacancies.add(LocalTime.parse("13:00:00"));
+        outback_data.start = LocalTime.parse("17:00:00");
+        outback_data.end = LocalTime.parse("23:00:00");
+        outback_data.queueMin = 3;
+        outback_data.queueMax = 10;
 
         est_data.put(e.OUTBACK, outback_data);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////
         // Applebee's Data:
         basic_data applebees_data = new basic_data();
-        applebees_data.newVacancies.add(LocalTime.parse("11:00:00"));
-        applebees_data.newVacancies.add(LocalTime.parse("12:00:00"));
-        applebees_data.newVacancies.add(LocalTime.parse("13:00:00"));
+        applebees_data.start = LocalTime.parse("10:00:00");
+        applebees_data.end = LocalTime.parse("16:00:00");
+        applebees_data.queueMin = 4;
+        applebees_data.queueMax = 9;
 
         est_data.put(e.APPLEBEES, applebees_data);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////
         // Cucko Data:
         basic_data cucko_data = new basic_data();
-        cucko_data.newVacancies.add(LocalTime.parse("11:00:00"));
-        cucko_data.newVacancies.add(LocalTime.parse("12:00:00"));
-        cucko_data.newVacancies.add(LocalTime.parse("13:00:00"));
+        cucko_data.start = LocalTime.parse("21:00:00");
+        cucko_data.end = LocalTime.parse("04:00:00");
+        cucko_data.queueMin = 9;
+        cucko_data.queueMax = 15;
 
         est_data.put(e.CUCKO, cucko_data);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////
         // Pepsi Data:
         basic_data pepsi_data = new basic_data();
-        pepsi_data.newVacancies.add(LocalTime.parse("11:00:00"));
-        pepsi_data.newVacancies.add(LocalTime.parse("12:00:00"));
-        pepsi_data.newVacancies.add(LocalTime.parse("13:00:00"));
+        pepsi_data.start = LocalTime.parse("20:00:00");
+        pepsi_data.end = LocalTime.parse("03:00:00");
+        pepsi_data.queueMin = 50;
+        pepsi_data.queueMax = 90;
 
         est_data.put(e.PEPSI, pepsi_data);
 
@@ -98,6 +104,15 @@ public class database extends Application {
                     return true;
 
         return false;
+    }
+
+    public int getQueueSize(basic_data data)
+    {
+        return data.queueMin + (int)(Math.random() * ((data.queueMax - data.queueMin) + 1));
+    }
+
+    public boolean newVacancy(){
+        return (new Random()).nextBoolean();
     }
 
     public static int getDrawableID(e type){

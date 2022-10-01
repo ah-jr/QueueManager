@@ -3,6 +3,7 @@ package com.example.queuemanager;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,12 +25,8 @@ public class mapview extends AppCompatActivity {
         TextView txtTest = findViewById(R.id.txtTest);
         Button btnTest = findViewById(R.id.btnTest);
 
-        //database.basic_data estData = (database.basic_data) bus.data.est_data.get(database.e.OUTBACK);
-        //LocalTime time = estData.newVacancies.get(0);
-        //txtTest.setText(time.toString());
-
-
         database.e est_type = (database.e) getIntent().getSerializableExtra("establishment");
+        database.basic_data estData = (database.basic_data) bus.data.est_data.get(est_type);
 
         Intent i = new Intent(mapview.this, queue.class);
         i.putExtra("establishment", est_type);
@@ -38,7 +35,22 @@ public class mapview extends AppCompatActivity {
         btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(i);
+                boolean open = LocalTime.now().isAfter(estData.start) && LocalTime.now().isBefore(estData.end);
+                open = open || (LocalTime.now().isBefore(estData.end) && estData.end.isBefore(estData.start));
+
+                if (open) {
+                    startActivity(i);
+                }
+                else{
+                    AlertDialog.Builder dlgAlert = new AlertDialog.Builder(mapview.this);
+                    dlgAlert.setMessage("This establishment is closed! Working hours: from " + estData.start.toString() + " to " + estData.end.toString() + ".");
+                    dlgAlert.setTitle("Error!");
+                    dlgAlert.setPositiveButton("OK", null);
+                    dlgAlert.setCancelable(true);
+                    dlgAlert.create().show();
+                }
+
+
             }
         });
     }

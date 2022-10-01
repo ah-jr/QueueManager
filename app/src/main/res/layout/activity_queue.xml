@@ -58,33 +58,49 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/imgEq1"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#009C27B0"
                 android:contentDescription="TODO"
-                app:srcCompat="@drawable/outback" />
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/outback"
+                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/imgEq2"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/cucko" />
+                android:backgroundTint="#009C27B0"
+                android:contentDescription="TODO"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/cucko"
+                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/imgEq3"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/applebees" />
+                android:backgroundTint="#009C27B0"
+                android:contentDescription="TODO"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/applebees"
+                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/imgEq4"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/pepsi" />
+                android:backgroundTint="#009C27B0"
+                android:contentDescription="TODO"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/pepsi"
+                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
         </LinearLayout>
     </HorizontalScrollView>
