@@ -19,7 +19,7 @@ public class establishment extends AppCompatActivity {
         ImageButton imgE3 = (ImageButton) findViewById(R.id.imgE3);
         ImageButton imgE4 = (ImageButton) findViewById(R.id.imgE4);
 
-        Intent i = new Intent(establishment.this, mapview.class);
+        Intent i = new Intent(establishment.this, maps.class);
 
         imgE1.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,6 +1,7 @@
 package com.example.queuemanager;
 
 import android.app.Application;
+import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 
@@ -19,9 +20,15 @@ public class database extends Application {
         OUTBACK, APPLEBEES, CUCKO, PEPSI
     }
 
+    public class instance{
+        public String name;
+        public double lat, lon;
+    }
+
     public class basic_data{
         public LocalTime start, end;
         public int queueMin, queueMax;
+        public List<instance> instances = new ArrayList<>();
     }
 
     public class user_data{
@@ -41,6 +48,24 @@ public class database extends Application {
         outback_data.end = LocalTime.parse("23:00:00");
         outback_data.queueMin = 3;
         outback_data.queueMax = 10;
+
+        instance inst1 = new instance();
+        inst1.name = "Outback - Shopping Iguatemi";
+        inst1.lat = -30.025255769074885;
+        inst1.lon = -51.16278995396791;
+        outback_data.instances.add(inst1);
+
+        instance inst2 = new instance();
+        inst2.name = "Outback - Barra Shopping Sul";
+        inst2.lat = -30.084465444504747;
+        inst2.lon = -51.24579548602659;
+        outback_data.instances.add(inst2);
+
+        instance inst3 = new instance();
+        inst3.name = "Outback - Praia de Belas";
+        inst3.lat = -30.049486117702806;
+        inst3.lon = -51.22928118601423;
+        outback_data.instances.add(inst3);
 
         est_data.put(e.OUTBACK, outback_data);
 

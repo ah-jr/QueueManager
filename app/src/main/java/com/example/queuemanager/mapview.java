@@ -49,8 +49,6 @@ public class mapview extends AppCompatActivity {
                     dlgAlert.setCancelable(true);
                     dlgAlert.create().show();
                 }
-
-
             }
         });
     }
