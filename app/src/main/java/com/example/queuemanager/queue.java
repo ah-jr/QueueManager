@@ -133,7 +133,7 @@ public class queue extends AppCompatActivity {
             }
         });
 
-        Intent i = new Intent(queue.this, mapview.class);
+        Intent i = new Intent(queue.this, maps.class);
 
         imgEq1.setOnClickListener(new View.OnClickListener() {
             @Override

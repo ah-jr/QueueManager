@@ -77,6 +77,24 @@ public class database extends Application {
         applebees_data.queueMin = 4;
         applebees_data.queueMax = 9;
 
+        inst1 = new instance();
+        inst1.name = "Outback - Shopping Iguatemi";
+        inst1.lat = -30.025255769074885;
+        inst1.lon = -51.16278995396791;
+        applebees_data.instances.add(inst1);
+
+        inst2 = new instance();
+        inst2.name = "Outback - Barra Shopping Sul";
+        inst2.lat = -30.084465444504747;
+        inst2.lon = -51.24579548602659;
+        applebees_data.instances.add(inst2);
+
+        inst3 = new instance();
+        inst3.name = "Outback - Praia de Belas";
+        inst3.lat = -30.049486117702806;
+        inst3.lon = -51.22928118601423;
+        applebees_data.instances.add(inst3);
+
         est_data.put(e.APPLEBEES, applebees_data);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -87,6 +105,24 @@ public class database extends Application {
         cucko_data.queueMin = 9;
         cucko_data.queueMax = 15;
 
+        inst1 = new instance();
+        inst1.name = "Outback - Shopping Iguatemi";
+        inst1.lat = -30.025255769074885;
+        inst1.lon = -51.16278995396791;
+        cucko_data.instances.add(inst1);
+
+        inst2 = new instance();
+        inst2.name = "Outback - Barra Shopping Sul";
+        inst2.lat = -30.084465444504747;
+        inst2.lon = -51.24579548602659;
+        cucko_data.instances.add(inst2);
+
+        inst3 = new instance();
+        inst3.name = "Outback - Praia de Belas";
+        inst3.lat = -30.049486117702806;
+        inst3.lon = -51.22928118601423;
+        cucko_data.instances.add(inst3);
+
         est_data.put(e.CUCKO, cucko_data);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -96,6 +132,24 @@ public class database extends Application {
         pepsi_data.end = LocalTime.parse("03:00:00");
         pepsi_data.queueMin = 50;
         pepsi_data.queueMax = 90;
+
+        inst1 = new instance();
+        inst1.name = "Outback - Shopping Iguatemi";
+        inst1.lat = -30.025255769074885;
+        inst1.lon = -51.16278995396791;
+        pepsi_data.instances.add(inst1);
+
+        inst2 = new instance();
+        inst2.name = "Outback - Barra Shopping Sul";
+        inst2.lat = -30.084465444504747;
+        inst2.lon = -51.24579548602659;
+        pepsi_data.instances.add(inst2);
+
+        inst3 = new instance();
+        inst3.name = "Outback - Praia de Belas";
+        inst3.lat = -30.049486117702806;
+        inst3.lon = -51.22928118601423;
+        pepsi_data.instances.add(inst3);
 
         est_data.put(e.PEPSI, pepsi_data);
 
