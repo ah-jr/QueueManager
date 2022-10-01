@@ -34,8 +34,9 @@ public class queue extends AppCompatActivity {
     public boolean joined;
     public business bus;
     public  database.basic_data estData;
-    private final int interval = 1000;
+    private final int interval = 2000;
     private Handler handler = new Handler();
+
     private Runnable runnable = new Runnable(){
         @RequiresApi(api = Build.VERSION_CODES.O)
         public void run() {
@@ -119,6 +120,9 @@ public class queue extends AppCompatActivity {
                     txtPos.setTextColor(Color.parseColor("#808080"));
                     btnJoin.setText("Join queue");
                     btnJoin.setBackgroundColor(Color.parseColor("#4CAF50"));
+
+                    if (pos == 0)
+                        handler.postDelayed(runnable, interval);
 
                     pos = Math.max(bus.data.getQueueSize(estData), pos);
                     txtPos.setText(Integer.toString(pos));
