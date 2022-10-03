@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
@@ -28,10 +29,13 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.queuemanager.databinding.ActivityMapsBinding;
 
 import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.Map;
 
 public class maps extends FragmentActivity implements OnMapReadyCallback{
 
@@ -41,6 +45,7 @@ public class maps extends FragmentActivity implements OnMapReadyCallback{
     private database.basic_data estData;
     private ActivityMapsBinding binding;
     LatLngBounds.Builder builder = new LatLngBounds.Builder();
+    Map<String, Integer> markers = new HashMap<String, Integer>();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -51,6 +56,7 @@ public class maps extends FragmentActivity implements OnMapReadyCallback{
         setContentView(binding.getRoot());
 
         btnConfirm = findViewById(R.id.btnConfirm);
+        btnConfirm.setBackgroundColor(Color.parseColor("#808080"));
 
         if (btnConfirm != null)
             btnConfirm.setOnClickListener(new View.OnClickListener() {
@@ -96,13 +102,32 @@ public class maps extends FragmentActivity implements OnMapReadyCallback{
         {
             LatLng loc = new LatLng(estData.instances.get(i).lat,estData.instances.get(i).lon);
             MarkerOptions marker = new MarkerOptions().position(loc).title(estData.instances.get(i).name);
-            mMap.addMarker(marker);
+            Marker mkr = mMap.addMarker(marker);
             builder.include(marker.getPosition());
+
+            markers.put(mkr.getId(), i);
         }
 
         LatLngBounds bounds = builder.build();
         int padding = 200;
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
         mMap.animateCamera(cu);
+
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(@NonNull LatLng latLng) {
+                btnConfirm.setBackgroundColor(Color.parseColor("#808080"));
+            }
+        });
+
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override public boolean onMarkerClick(Marker marker) {
+                //int id = markers.get(marker.getId());
+                btnConfirm.setBackgroundColor(Color.parseColor("#4CAF50"));
+                return false;
+            }
+        });
     }
 }
