@@ -45,9 +45,6 @@
             android:name=".queue"
             android:exported="false" />
         <activity
-            android:name=".mapview"
-            android:exported="false" />
-        <activity
             android:name=".establishment"
             android:exported="false" />
         <activity
