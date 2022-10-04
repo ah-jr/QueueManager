@@ -65,6 +65,7 @@ public class maps extends FragmentActivity implements OnMapReadyCallback{
                 public void onClick(View view) {
                     boolean open = LocalTime.now().isAfter(estData.start) && LocalTime.now().isBefore(estData.end);
                     open = open || (LocalTime.now().isBefore(estData.end) && estData.end.isBefore(estData.start));
+                    open = open || (LocalTime.now().isAfter(estData.start) && estData.end.isBefore(estData.start));
 
                     if (open) {
                         startActivity(intent);
