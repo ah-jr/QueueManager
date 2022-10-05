@@ -98,10 +98,11 @@ public class maps extends FragmentActivity implements OnMapReadyCallback{
         mMap = googleMap;
 
         googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.mapstyle));
+        LatLng loc = null;
 
         for (int i=0; i<estData.instances.size(); i++)
         {
-            LatLng loc = new LatLng(estData.instances.get(i).lat,estData.instances.get(i).lon);
+            loc = new LatLng(estData.instances.get(i).lat,estData.instances.get(i).lon);
             MarkerOptions marker = new MarkerOptions().position(loc).title(estData.instances.get(i).name);
             Marker mkr = mMap.addMarker(marker);
             builder.include(marker.getPosition());
@@ -109,10 +110,19 @@ public class maps extends FragmentActivity implements OnMapReadyCallback{
             markers.put(mkr.getId(), i);
         }
 
-        LatLngBounds bounds = builder.build();
-        int padding = 200;
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-        mMap.animateCamera(cu);
+        int padding = 0;
+
+        if (markers.size() == 1)
+        {
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 13));
+        }
+        else
+        {
+            padding = 200;
+            LatLngBounds bounds = builder.build();
+            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+            mMap.animateCamera(cu);
+        }
 
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {

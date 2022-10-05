@@ -36,6 +36,13 @@ public class database extends Application {
         public String password;
     }
 
+    public class reservation{
+        public String nr;
+        public String time;
+        public String date;
+    }
+
+    public Dictionary reservations = new Hashtable();
     public Dictionary est_data = new Hashtable();
     public List<user_data> usr_data = new ArrayList<>();
 
@@ -78,22 +85,16 @@ public class database extends Application {
         applebees_data.queueMax = 9;
 
         inst1 = new instance();
-        inst1.name = "Outback - Shopping Iguatemi";
-        inst1.lat = -30.025255769074885;
-        inst1.lon = -51.16278995396791;
+        inst1.name = "Applebee's - Barra Shopping Sul";
+        inst1.lat = -30.083320129441535;
+        inst1.lon = -51.24556209995582;
         applebees_data.instances.add(inst1);
 
         inst2 = new instance();
-        inst2.name = "Outback - Barra Shopping Sul";
-        inst2.lat = -30.084465444504747;
-        inst2.lon = -51.24579548602659;
+        inst2.name = "Applebee's - Canoas";
+        inst2.lat = -29.913374306005533;
+        inst2.lon = -51.16457047073525;
         applebees_data.instances.add(inst2);
-
-        inst3 = new instance();
-        inst3.name = "Outback - Praia de Belas";
-        inst3.lat = -30.049486117702806;
-        inst3.lon = -51.22928118601423;
-        applebees_data.instances.add(inst3);
 
         est_data.put(e.APPLEBEES, applebees_data);
 
@@ -106,22 +107,10 @@ public class database extends Application {
         cucko_data.queueMax = 15;
 
         inst1 = new instance();
-        inst1.name = "Outback - Shopping Iguatemi";
-        inst1.lat = -30.025255769074885;
-        inst1.lon = -51.16278995396791;
+        inst1.name = "Cucko";
+        inst1.lat = -30.041206786094648;
+        inst1.lon = -51.21826750040299;
         cucko_data.instances.add(inst1);
-
-        inst2 = new instance();
-        inst2.name = "Outback - Barra Shopping Sul";
-        inst2.lat = -30.084465444504747;
-        inst2.lon = -51.24579548602659;
-        cucko_data.instances.add(inst2);
-
-        inst3 = new instance();
-        inst3.name = "Outback - Praia de Belas";
-        inst3.lat = -30.049486117702806;
-        inst3.lon = -51.22928118601423;
-        cucko_data.instances.add(inst3);
 
         est_data.put(e.CUCKO, cucko_data);
 
@@ -134,22 +123,10 @@ public class database extends Application {
         pepsi_data.queueMax = 90;
 
         inst1 = new instance();
-        inst1.name = "Outback - Shopping Iguatemi";
-        inst1.lat = -30.025255769074885;
-        inst1.lon = -51.16278995396791;
+        inst1.name = "Pepsi On Stage";
+        inst1.lat = -29.98639498050362;
+        inst1.lon = -51.17820190231522;
         pepsi_data.instances.add(inst1);
-
-        inst2 = new instance();
-        inst2.name = "Outback - Barra Shopping Sul";
-        inst2.lat = -30.084465444504747;
-        inst2.lon = -51.24579548602659;
-        pepsi_data.instances.add(inst2);
-
-        inst3 = new instance();
-        inst3.name = "Outback - Praia de Belas";
-        inst3.lat = -30.049486117702806;
-        inst3.lon = -51.22928118601423;
-        pepsi_data.instances.add(inst3);
 
         est_data.put(e.PEPSI, pepsi_data);
 
@@ -174,6 +151,24 @@ public class database extends Application {
         user.password = password;
 
         usr_data.add(user);
+    }
+
+    public void addReservation(e est, String nr, String date, String time)
+    {
+        reservation res = new reservation();
+        res.nr = nr;
+        res.date = date;
+        res.time = time;
+
+        if (reservations.get(est) != null) {
+            ((List<reservation>)reservations.get(est)).add(res);
+        }
+        else{
+            List<reservation> resList = new ArrayList<>();
+            resList.add(res);
+
+            reservations.put(est, resList);
+        }
     }
 
     public boolean validateUser(String email, String password){

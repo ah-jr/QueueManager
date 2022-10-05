@@ -3,12 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.queuemanager">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
 
     <application
         android:name=".business"
@@ -21,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QueueManager"
         tools:targetApi="31">
-
+        <activity
+            android:name=".reservation"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -35,7 +35,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}"/>
+            android:value="${MAPS_API_KEY}" />
 
         <activity
             android:name=".maps"

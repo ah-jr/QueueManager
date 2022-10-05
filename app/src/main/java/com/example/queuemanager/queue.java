@@ -75,6 +75,7 @@ public class queue extends AppCompatActivity {
         bus = (business) getApplicationContext();
         ImageView imgCover = findViewById(R.id.imgCover);
         Button btnJoin = findViewById(R.id.btnJoin);
+        Button btnReservation = findViewById(R.id.btnReservation);
         TextView txtSizeInfo= findViewById(R.id.txtSizeInfo);
         txtPos = findViewById(R.id.txtPos);
         joined = false;
@@ -130,6 +131,16 @@ public class queue extends AppCompatActivity {
                 }
 
                 joined = !joined;
+            }
+        });
+
+        Intent intent = new Intent(queue.this, reservation.class);
+        intent.putExtra("establishment", est_type);
+
+        btnReservation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent);
             }
         });
 
