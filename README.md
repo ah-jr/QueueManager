@@ -5,5 +5,5 @@ The user selects one of the registered establishments, selects an instance in th
 
 ![](docs/demo.png)
 
-The app it's just a prototype so far. It was created for the Human–computer interaction course at my university.
+The app it's just a prototype so far. It was created for the Human–computer interaction course at my university.  
 This project implements the front-end in Android Studio, and creates it's own database without data persistance.   
